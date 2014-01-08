@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @movie.title %>
+</p>
+
+<p>
+  <strong>Mpaa:</strong>
+  <%= @movie.mpaa %>
+</p>
+
+<p>
+  <strong>A rating:</strong>
+  <%= @movie.a_rating %>
+</p>
+
+<p>
+  <strong>A score:</strong>
+  <%= @movie.a_score %>
+</p>
+
+<p>
+  <strong>C score:</strong>
+  <%= @movie.c_score %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @movie.image %>
+</p>
+
+<p>
+  <strong>Synopsis:</strong>
+  <%= @movie.synopsis %>
+</p>
+
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %>

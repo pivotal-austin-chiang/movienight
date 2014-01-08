@@ -1,0 +1,28 @@
+<h1>
+    WHY DON'T YOU WATCH
+</h1>
+<% index = rand(30) %>
+
+<%= image_tag @body[index]["posters"]["detailed"] %>
+<h1>
+<%= @body[index]["title"].upcase %>
+</h1>
+<h1>
+  <%= @body[index]["mpaa_rating"] %>
+</h1>
+<h1>
+  <%= @body[index]["ratings"]["critics_rating"] %>
+</h1>
+<h1>
+  <%= @body[index]["ratings"]["critics_score"] %>
+</h1>
+<h1>
+  <%= @body[index]["ratings"]["audience_score"] %>
+</h1>
+<p>
+<%= @body[index]["synopsis"].upcase %>
+</p> 
+
+<br>
+
+<%= link_to 'New Movie', movies_path %>

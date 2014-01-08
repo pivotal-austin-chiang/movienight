@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  mpaa: MyString
+  a_rating: MyString
+  a_score: 1
+  c_score: 1
+  image: MyString
+  synopsis: MyText
+
+two:
+  title: MyString
+  mpaa: MyString
+  a_rating: MyString
+  a_score: 1
+  c_score: 1
+  image: MyString
+  synopsis: MyText
