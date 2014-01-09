@@ -8,17 +8,46 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require bootstrap.min
  *= require_self
  *= require_tree .
  */
 
-p{
-	font-family: "Helvetica";
-	font-size: 20px;
-	text-align: justify;
+ @font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../assets/glyphicons-halflings-regular.eot');
+  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
+       url('../assets/glyphicons-halflings-regular.woff') format('woff'), 
+       url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), 
+       url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
-h1{
-	font-family: "Helvetica";
-	font-weight: bold;
-	font-size: 40px;
+
+.modal-icons img{
+	width: 40px;
+  	height: 40px;
+  	float:left;
 }
+table{
+	font-size: 25px;
+	background-color:"white": 
+
+}
+
+
+.modal-icons p{
+	font-size: 12px;
+}
+body{
+	
+	background-image:url('bg-clouds.png') ;
+	background-color: #a8d5f9;
+	background-repeat:no-repeat;
+	background-position:center;
+	background-position:top;
+	padding-bottom:200px;
+}
+
+/* url('/images/redesign/bg-clouds.png?v=20120910') no-repeat center top;
+position: relative;*/
+
+

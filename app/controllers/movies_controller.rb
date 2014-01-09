@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
-    uri = URI.parse('http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?limit=30&country=us&apikey=vxwjzfe4gaczt2qpurr33cyj')
+    uri = URI.parse('http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=50&page=1&country=us&apikey=vxwjzfe4gaczt2qpurr33cyj')
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
     response = http.request(request)
