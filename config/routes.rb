@@ -1,5 +1,7 @@
 Movienight::Application.routes.draw do
+  get "search/query"
   resources :movies
+
   root to: 'movies#index'
   # get "movies#getData"
 

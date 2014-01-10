@@ -27,17 +27,27 @@
   	height: 40px;
   	float:left;
 }
+.list-title{
+	font-size: 15px;
+	color: grey;
+
+}
 table{
 	font-size: 25px;
 	background-color:"white": 
 
+}
+a{
+	
+	color: grey;
+	
 }
 
 
 .modal-icons p{
 	font-size: 12px;
 }
-body{
+/*body{
 	
 	background-image:url('bg-clouds.png') ;
 	background-color: #a8d5f9;
@@ -45,7 +55,7 @@ body{
 	background-position:center;
 	background-position:top;
 	padding-bottom:200px;
-}
+}*/
 
 /* url('/images/redesign/bg-clouds.png?v=20120910') no-repeat center top;
 position: relative;*/

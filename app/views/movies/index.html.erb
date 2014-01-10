@@ -1,14 +1,30 @@
 
-<h1 style="text-align: center;">What to Watch?</h1>
- 
-<table class="table-striped" style="margin:0 auto;">
+<h1 style="text-align: center;">Not Rotten Tomatoes</h1>
+<div style="margin-left: auto; margin-right: auto; width: 1000px">
+<%count = 0%>
+<% @total.each do |list| %>
+<div style="display: inline-block">
+<table class="table-striped" style="margin:0 auto; padding-left:20px; padding-right:20px;">
   <tr>
-    <th>Title</th>  
+    <th><%=@table_title[count]%></th>
+    <%count=count+1%>  
   </tr>
- 
-  <% @body.each do |movie| %>
+
+  <% list.each do |movie| %>
 	  <tr>
-	    <td><a data-toggle="modal" data-target="#a<%= movie["id"]%>"><%= movie["title"]%></a></td>
+	    <td>
+	    	<div class="list-title">
+				<% if movie["ratings"]["critics_rating"] == "Certified Fresh"%>
+		    		<%= image_tag("certified.png", :size => "20x20")%>
+		    	<% elsif movie["ratings"]["critics_rating"] == "Fresh"%>
+		    		<%= image_tag("tomato.png", :size => "20x20")%>
+		    	<% elsif movie["ratings"]["critics_rating"] == "Rotten"%>
+		    		<%= image_tag("rotten.png", :size => "20x20")%>
+		    	<%end%>
+		    	<%= movie["ratings"]["critics_score"] %>%
+		    	<a data-toggle="modal" data-target="#a<%= movie["id"]%>"><%= movie["title"]%></a>
+	    	</div>
+	    </td>
 	  </tr>
 
 	<div class="modal fade" id="a<%= movie["id"]%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -16,7 +32,9 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	        <h4 class="modal-title" id="myModalLabel"><h1><%= movie["title"]%></h1></h4>
+	        <h1 class="modal-title" id="myModalLabel">
+	        	<%= movie["title"]%>
+	        </h1>
 	      </div>
 	      <div class="modal-body">
 	      	<div class="jumbotron">
@@ -67,6 +85,11 @@
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 
-<% end %>
+	<% end %>
+ 
+	
 </table>
+</div>
+<% end %>
+</div>
 

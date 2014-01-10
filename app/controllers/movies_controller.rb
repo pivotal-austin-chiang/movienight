@@ -7,14 +7,34 @@ class MoviesController < ApplicationController
 
   # GET /movies
   # GET /movies.json
-
-  def index
-    @movies = Movie.all
-    uri = URI.parse('http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=50&page=1&country=us&apikey=vxwjzfe4gaczt2qpurr33cyj')
+  def parseData (uri)
+    uri = URI.parse(uri)
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
     response = http.request(request)
-    @body = JSON.parse(response.body)["movies"]
+    office = response.body
+    if response.header["Content-Encoding"] == "gzip"
+      gz = Zlib::GzipReader.new(StringIO.new(office.to_s))    
+      office = gz.read
+    end
+    office
+  end
+
+
+
+  def index
+    @movies = Movie.all
+    @box_office = JSON.parse(parseData('http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=16&country=us&apikey=vxwjzfe4gaczt2qpurr33cyj'))["movies"]
+
+    @in_theaters = JSON.parse(parseData('http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=16&page=1&country=us&apikey=vxwjzfe4gaczt2qpurr33cyj'))["movies"]
+
+    @open_movies = JSON.parse(parseData('http://api.rottentomatoes.com/api/public/v1.0/lists/movies/opening.json?limit=16&country=us&apikey=vxwjzfe4gaczt2qpurr33cyj'))["movies"]
+    @total = Array.new
+    @total<<@box_office
+    @total<<@in_theaters
+    @total<<@open_movies
+    @table_title = Array.new
+    @table_title<<"Box Office"<<"In Theaters"<<"Opening Movies"
 
   end
 
