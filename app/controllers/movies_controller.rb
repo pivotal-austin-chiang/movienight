@@ -35,6 +35,11 @@ class MoviesController < ApplicationController
     @total<<@open_movies
     @table_title = Array.new
     @table_title<<"Box Office"<<"In Theaters"<<"Opening Movies"
+    # search    = params[:search_query]
+    # @page = 1
+    # @page_limit = 10
+    # @search_movies = JSON.parse(parseData('http://api.rottentomatoes.com/api/public/v1.0/movies.json?q='search'&page_limit='+@page_limit'&page='+@page'&apikey=vxwjzfe4gaczt2qpurr33cyj'))["movies"]
+
 
   end
 

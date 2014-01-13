@@ -37,8 +37,12 @@ table{
 	background-color:"white": 
 
 }
+.form-group{
+	width: 1000px;
+	margin: 0 auto;
+}
 a{
-	
+
 	color: grey;
 	
 }
