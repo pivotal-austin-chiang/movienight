@@ -1,2 +1,122 @@
-<h1>Search#query</h1>
-<p>Find me in app/views/search/query.html.erb</p>
+
+<div style="margin-left: auto; margin-right: auto; width: 1000px">
+<% total_pages = @total_titles/10 +1%><table class="table">
+<form role="form" class ="page-form" id = "page">
+  <div class="form-group">
+    Go to Page <input  class="form-control">
+  </div>
+
+</form>
+  <tr>
+  	<th>Rating</th>
+  	<th>Poster</th>
+  	<th>Title</th>
+  </tr>
+
+  <% @movie_search.each do |movie| %>
+  <tr>
+    <td>
+    	<div class="list-title">
+			<% if movie["ratings"]["critics_rating"] == "Certified Fresh"%>
+	    		<%= image_tag("certified.png", :size => "50x50")%>
+	    		<%= movie["ratings"]["critics_score"] %>%
+	    	<% elsif movie["ratings"]["critics_rating"] == "Fresh"%>
+	    		<%= image_tag("tomato.png", :size => "50x50")%>
+	    		<%= movie["ratings"]["critics_score"] %>%		    	
+	    	<% elsif movie["ratings"]["critics_rating"] == "Rotten"%>
+	    		<%= image_tag("rotten.png", :size => "50x50")%>
+	    		<%= movie["ratings"]["critics_score"] %>%
+    		<% else%>
+	    		<%= image_tag("null_val.png", :size =>"50x50")%>
+	    		NR%
+	    	<%end%>
+	    	
+    </td>
+
+    <td>
+    	<div style="float: left; margin: 0px 20px 50px 5px;"><%= image_tag movie["posters"]["profile"]%></div>
+    </td>
+    <td>
+    	<h1 class="modal-title">
+        	<a data-toggle="modal" data-target="#a<%= movie["id"]%>"><%= movie["title"]%></a>
+    	</div>
+        </h1>
+    </td>
+  </tr>
+
+	<!-- <div class="list-title">
+		
+    	<a data-toggle="modal" data-target="#a<%= movie["id"]%>"><%= movie["title"]%></a>
+	</div> -->
+
+	<div class="modal fade" id="a<%= movie["id"]%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h1 class="modal-title" id="myModalLabel">
+	        	<%= movie["title"]%>
+	        </h1>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="jumbotron">
+
+		      	<div style="float: left; margin: 0px 20px 50px 5px;"><%= image_tag movie["posters"]["profile"]%></div>
+		        <h3><b>Rating: </b><%= movie["mpaa_rating"] %></h3>
+		        <div class = "modal-icons">
+		        	<div style ="display:inline-block; padding-right:20px">
+
+					    	<% if movie["ratings"]["critics_score"] == -1%>
+					    		<%= image_tag("null_val.png")%>
+					    	<%end%>
+
+					    	<% if movie["ratings"]["critics_rating"] == "Certified Fresh"%>
+					    		<%= image_tag("certified.png")%>
+					    	<% elsif movie["ratings"]["critics_rating"] == "Fresh"%>
+					    		<%= image_tag("tomato.png")%>
+					    	<% elsif movie["ratings"]["critics_rating"] == "Rotten"%>
+					    		<%= image_tag("rotten.png")%>
+					    	
+					    	<%end%>
+
+					    	<h4>Critics: <%= movie["ratings"]["critics_score"] %>%</h4>
+					</div>
+
+		        	<div style ="display:inline-block;">
+
+					    	<% if movie["ratings"]["audience_rating"] == "Upright"%>
+					    		<%= image_tag("like.png")%>
+					    	<% elsif movie["ratings"]["audience_rating"] == "Spilled"%>
+					    		<%= image_tag("dislike.png")%>
+					    	<%end%>
+				    	<h4>Audience: <%= movie["ratings"]["audience_score"] %>%</h4>
+				    </div>
+				    <div>
+				    	<h5>Critic's Consensus</h5><p><%= movie["critics_consensus"]%></p>
+				    </div>
+			    </div>
+
+
+			</div>
+			    <h3><b>Synopsis: </b></br></h3><%= movie["synopsis"] %>
+			    <h3><b>Cast: </b></br></h3>
+			    <%ary=Array.new%>
+			    <% movie["abridged_cast"].each do |member|%>
+			    	<% ary<<member["name"] %>
+			    <%end%>
+			    <%= ary.to_sentence %> 
+		    
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<% end %>
+
+</table>
+ 
+</div>
+

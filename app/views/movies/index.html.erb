@@ -1,7 +1,7 @@
 
 <h1 style="text-align: center;">Not Rotten Tomatoes</h1>
 
-<form role="form" class ="search-form">
+<form role="form" class ="search-form" id = "search">
   <div class="form-group">
     <input  class="form-control"  placeholder="Search for a Movie">
   </div>
@@ -9,7 +9,7 @@
 </form>
 
 
-<div style="margin-left: auto; margin-right: auto; width: 1000px">
+<div id = "init-block" style="margin-left: auto; margin-right: auto; width: 1000px">
 <%count = 0%>
 <% @total.each do |list| %>
 <div style="display: inline-block">
@@ -29,6 +29,8 @@
 		    		<%= image_tag("tomato.png", :size => "20x20")%>
 		    	<% elsif movie["ratings"]["critics_rating"] == "Rotten"%>
 		    		<%= image_tag("rotten.png", :size => "20x20")%>
+	    		<% else%>
+		    		<%= image_tag("null_val.png", :size =>"20x20")%>
 		    	<%end%>
 		    	<%= movie["ratings"]["critics_score"] %>%
 		    	<a data-toggle="modal" data-target="#a<%= movie["id"]%>"><%= movie["title"]%></a>
@@ -52,12 +54,15 @@
 		        <h3><b>Rating: </b><%= movie["mpaa_rating"] %></h3>
 		        <div class = "modal-icons">
 		        	<div style ="display:inline-block; padding-right:20px">
+
+
 					    	<% if movie["ratings"]["critics_rating"] == "Certified Fresh"%>
 					    		<%= image_tag("certified.png")%>
 					    	<% elsif movie["ratings"]["critics_rating"] == "Fresh"%>
 					    		<%= image_tag("tomato.png")%>
 					    	<% elsif movie["ratings"]["critics_rating"] == "Rotten"%>
 					    		<%= image_tag("rotten.png")%>
+
 					    	<%end%>
 					    	<h4>Critics: <%= movie["ratings"]["critics_score"] %>%</h4>
 					</div>
@@ -102,3 +107,4 @@
 <% end %>
 </div>
 
+<div id="search-result"></div>

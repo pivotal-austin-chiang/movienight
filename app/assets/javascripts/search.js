@@ -1,18 +1,34 @@
-var apikey = "vxwjzfe4gaczt2qpurr33cyj";
-var baseUrl = "http://api.rottentomatoes.com/api/public/v1.0";
-var page = 1;
-var page_limit = 15;
+// var apikey = "vxwjzfe4gaczt2qpurr33cyj";
 
 // construct the uri with our apikey
-var moviesSearchUrl = baseUrl + '/movies.json?apikey=' + apikey;
-$("form.search-form").submit(function() {
-    var search_query = $(this).serialize();
-    $.ajax({
-        // type: "GET",
-        // url: moviesSearchUrl + '&q=' + encodeURI(search_query) + '&page_limit=' + page_limit + '&page=' +page, //sumbits it to the given url of the form
-        
-        url: 'search/movieList'
-        data: {search_query, page_no}}).done(function(data){
-
+$(document).ready(function()   {
+    $("#search").submit(function() {
+        var query = $(this).find('input').val();
+        query = encodeURIComponent(query);
+        var request = $.ajax({
+            type: "GET",
+            // url: moviesSearchUrl + '&q=' + encodeURI(search_query) + '&page_limit=' + page_limit + '&page=' +page, //sumbits it to the given url of the form
+            
+            url: 'search/query',
+            data: {query:query}
         });
+        request.done(function(data, textStatus, jqXHR) {
+            $("#init-block").hide();
+            document.getElementById('search-result').innerHTML = data;
+        });
+        return false;
+    });
+    $("#page").submit(function() {
+        var page = $(this).find('input').val();
+        var request = $.ajax({
+            type: "GET",
+            // url: moviesSearchUrl + '&q=' + encodeURI(search_query) + '&page_limit=' + page_limit + '&page=' +page, //sumbits it to the given url of the form
+            url: 'search/query',
+            data: {page:page_no}
+        });
+        request.done(function(data, textStatus, jqXHR) {
+            document.getElementById('search-result').innerHTML = data;
+        });
+        return false;
+    });
 });
