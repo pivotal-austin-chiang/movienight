@@ -14,7 +14,7 @@ class SearchController < ApplicationController
 
   def query
   	@query = params[:query]
-  	@page_no = params[:page_no]
+  	@page_no = params[:page]
   	if !@page_no
   		@page_no='1'
   	end
