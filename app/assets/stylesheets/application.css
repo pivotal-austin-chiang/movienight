@@ -27,10 +27,17 @@
   	height: 40px;
   	float:left;
 }
+#page-label{
+	font-size: 22px;
+}
 .list-title{
 	font-size: 15px;
 	color: grey;
 
+}
+#movie-title{
+	font-size: 25px;
+	color: grey;
 }
 table{
 	font-size: 25px;
@@ -53,6 +60,11 @@ a{
 
 .modal-icons p{
 	font-size: 12px;
+}
+
+#consensus{
+	font-size: 12px;
+	color: grey;
 }
 /*body{
 	

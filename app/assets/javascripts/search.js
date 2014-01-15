@@ -7,8 +7,6 @@ $(document).ready(function()   {
         $("select").change(function() {
             var page_no = ""
             page_no = $( "select option:selected" ).val();
-            alert(page_no);
-            alert(query);
             var request = $.ajax({
                 type: "GET",
                 // url: moviesSearchUrl + '&q=' + encodeURI(search_query) + '&page_limit=' + page_limit + '&page=' +page, //sumbits it to the given url of the form
@@ -26,7 +24,6 @@ $(document).ready(function()   {
         query = $(this).find('input').val();
         query = encodeURIComponent(query);
 
-        alert(query);
         var request = $.ajax({
             type: "GET",
             // url: moviesSearchUrl + '&q=' + encodeURI(search_query) + '&page_limit=' + page_limit + '&page=' +page, //sumbits it to the given url of the form
